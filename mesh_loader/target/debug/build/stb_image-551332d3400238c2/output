@@ -1,0 +1,43 @@
+TARGET = Some("x86_64-pc-windows-msvc")
+OPT_LEVEL = Some("0")
+HOST = Some("x86_64-pc-windows-msvc")
+CXX_x86_64-pc-windows-msvc = None
+CXX_x86_64_pc_windows_msvc = None
+HOST_CXX = None
+CXX = None
+CXXFLAGS_x86_64-pc-windows-msvc = None
+CXXFLAGS_x86_64_pc_windows_msvc = None
+HOST_CXXFLAGS = None
+CXXFLAGS = None
+CRATE_CC_NO_DEFAULTS = None
+CARGO_CFG_TARGET_FEATURE = Some("fxsr,sse,sse2")
+DEBUG = Some("true")
+running: "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.32.31326\\bin\\HostX64\\x64\\cl.exe" "-nologo" "-MD" "-Z7" "-Brepro" "-W4" "-FoC:\\Users\\Grace\\Desktop\\Rust-OpenGL-Texture-Loader\\mesh_loader\\target\\debug\\build\\stb_image-551332d3400238c2\\out\\src/stb_image.o" "-c" "src/stb_image.c"
+stb_image.c
+src/stb_image.c(3506): warning C4456: declaration of 'k' hides previous local declaration
+src/stb_image.c(3473): note: see declaration of 'k'
+src/stb_image.c(4115): warning C4456: declaration of 'cur' hides previous local declaration
+src/stb_image.c(4066): note: see declaration of 'cur'
+src/stb_image.c(4116): warning C4456: declaration of 'i' hides previous local declaration
+src/stb_image.c(3963): note: see declaration of 'i'
+src/stb_image.c(4913): warning C4457: declaration of 'y' hides function parameter
+src/stb_image.c(4848): note: see declaration of 'y'
+src/stb_image.c(5355): warning C4456: declaration of 'i' hides previous local declaration
+src/stb_image.c(5350): note: see declaration of 'i'
+src/stb_image.c(5597): warning C4456: declaration of 'code' hides previous local declaration
+src/stb_image.c(5562): note: see declaration of 'code'
+src/stb_image.c(5736): warning C4244: '=': conversion from 'int' to 'stbi_uc', possible loss of data
+src/stb_image.c(5655): warning C4100: 'req_comp': unreferenced formal parameter
+exit code: 0
+AR_x86_64-pc-windows-msvc = None
+AR_x86_64_pc_windows_msvc = None
+HOST_AR = None
+AR = None
+running: "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.32.31326\\bin\\HostX64\\x64\\lib.exe" "-out:C:\\Users\\Grace\\Desktop\\Rust-OpenGL-Texture-Loader\\mesh_loader\\target\\debug\\build\\stb_image-551332d3400238c2\\out\\liblibstb_image.a" "-nologo" "C:\\Users\\Grace\\Desktop\\Rust-OpenGL-Texture-Loader\\mesh_loader\\target\\debug\\build\\stb_image-551332d3400238c2\\out\\src/stb_image.o"
+exit code: 0
+cargo:rustc-link-lib=static=libstb_image
+cargo:rustc-link-search=native=C:\Users\Grace\Desktop\Rust-OpenGL-Texture-Loader\mesh_loader\target\debug\build\stb_image-551332d3400238c2\out
+CXXSTDLIB_x86_64-pc-windows-msvc = None
+CXXSTDLIB_x86_64_pc_windows_msvc = None
+HOST_CXXSTDLIB = None
+CXXSTDLIB = None

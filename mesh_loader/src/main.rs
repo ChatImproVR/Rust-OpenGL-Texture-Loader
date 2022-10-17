@@ -1,4 +1,5 @@
 use glow::*;
+use stb_image::stb_image::bindgen;
 
 fn main() {
     unsafe {
@@ -6,7 +7,7 @@ fn main() {
         let (gl, window, mut events_loop, _context) = create_sdl2_context();
 
         // Create a shader program from source
-        let program = create_program(&gl, VERTEX_SHADER_SOURCE, FRAGMENT_SHADER_SOURCE);
+        let program = create_program(&gl, TEXTURE_SOURCE);
         gl.use_program(Some(program));
 
         // Create a vertex buffer and vertex array object
@@ -32,7 +33,7 @@ fn main() {
         }
 
         // Clean up
-        gl.delete_program(program);
+        //gl.delete_program(program);
         gl.delete_vertex_array(vao);
         gl.delete_buffer(vbo)
     }
@@ -60,6 +61,35 @@ unsafe fn create_sdl2_context() -> (
     let event_loop = sdl.event_pump().unwrap();
 
     (gl, window, event_loop, gl_context)
+}
+
+unsafe fn create_texture_wrapper(
+    gl: &glow::Context,
+    texture_source: &str,
+) -> NativeTexture {
+    let tex0 : u32 = 0;
+
+    gl.enable(glow::TEXTURE_2D);
+
+    let texture = gl.create_texture().expect("Cannot create texture");
+    gl.bind_texture(glow::TEXTURE_2D, Some(&tex0));
+
+    gl.tex_parameter_i32(glow::TEXTURE_2D, glow::TEXTURE_WRAP_S, glow::MIRRORED_REPEAT.try_into().unwrap());
+    gl.tex_parameter_i32(glow::TEXTURE_2D, glow::TEXTURE_WRAP_T, glow::MIRRORED_REPEAT.try_into().unwrap());
+
+    gl.tex_parameter_i32(glow::TEXTURE_2D, glow::TEXTURE_MAG_FILTER, glow::LINEAR.try_into().unwrap());
+    gl.tex_parameter_i32(glow::TEXTURE_2D, glow::TEXTURE_IN_FILTER, glow::LINEAR.try_into().unwrap());
+
+    let (width, height, nrChannels) : u32 = 400 , 400, 3;
+    let data = stbi_load(texture_source, &width, &height, &nrChannels, 0);
+    if (data) {
+        gl.tex_image_2d(glow::TEXTURE_2D, 0, glow::RGB, width, height, 0, gloww::RGB, glow::UNSIGNED_BYTE, data);
+        gl.generate_mipmap(glow::TETURE_2D);
+    }
+
+    gl.stbi_image_free(data);
+
+    texture
 }
 
 unsafe fn create_program(
@@ -129,6 +159,8 @@ unsafe fn set_uniform(gl: &glow::Context, program: NativeProgram, name: &str, va
     // See also `uniform_n_i32`, `uniform_n_u32`, `uniform_matrix_4_f32_slice` etc.
     gl.uniform_1_f32(uniform_location.as_ref(), value)
 }
+
+const TEXTURE_SOURCE: &str = "./smiley.jpg";
 
 const VERTEX_SHADER_SOURCE: &str = r#"#version 130
   in vec2 in_position;

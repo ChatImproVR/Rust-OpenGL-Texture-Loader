@@ -98,13 +98,13 @@ impl Renderer {
             let texture0 = Texture::new();
             texture0.set_wrapping(gl::REPEAT);
             texture0.set_filtering(gl::LINEAR);
-            texture0.load(&Path::new("assets/logo.png"))?;
+            texture0.load(&Path::new("../assets/logo.png"))?;
             program.set_int_uniform("texture0", 0)?;
 
             let texture1 = Texture::new();
             texture1.set_wrapping(gl::REPEAT);
             texture1.set_filtering(gl::LINEAR);
-            texture1.load(&Path::new("assets/rust.jpg"))?;
+            texture1.load(&Path::new("../assets/rust.jpg"))?;
             program.set_int_uniform("texture1", 1)?;
 
             gl::BlendFunc(gl::SRC_ALPHA, gl::ONE_MINUS_SRC_ALPHA);
